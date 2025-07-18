@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:paywell/src/widgets/build_timeline_item.dart';
+import 'package:paywell/widgets/build_timeline_item.dart';
+import 'package:paywell/widgets/pay_button.dart';
+import 'package:paywell/widgets/restore_button.dart';
 
 class MonthlyPlanTab extends StatelessWidget {
   const MonthlyPlanTab({super.key});
@@ -32,38 +34,10 @@ class MonthlyPlanTab extends StatelessWidget {
             isLast: true,
           ),
           const SizedBox(height: 10),
-          TextButton(
-            onPressed: () {},
-            child: Center(
-              child: const Text(
-                'Restore purchase',
-                style: TextStyle(color: Colors.grey),
-              ),
-            ),
-          ),
+          RestoreButton(onPressed: () {}, buttonText: 'Restore purchase'),
           const SizedBox(height: 20),
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF007BFF),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(40),
-                ),
-                padding: const EdgeInsets.symmetric(vertical: 16),
-              ),
-              child: const Text(
-                'Try for \$0.00',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  fontFamily: 'Manrope',
-                ),
-              ),
-            ),
-          ),
+
+          PayButton(onPressed: () {}, buttonText: "Try for \$0.00"),
         ],
       ),
     );

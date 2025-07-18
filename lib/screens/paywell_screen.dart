@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:paywell/src/screens/annual_plan_tab.dart';
-import 'package:paywell/src/screens/monthly_plan_tab.dart';
+import 'package:paywell/screens/annual_plan_tab.dart';
+import 'package:paywell/screens/monthly_plan_tab.dart';
 
 class PaywallScreen extends StatefulWidget {
   const PaywallScreen({super.key});
@@ -61,20 +61,23 @@ class _PaywallScreenState extends State<PaywallScreen>
           Text(
             _subtitle,
             style: const TextStyle(
-              fontSize: 16,
-              color: Colors.grey,
+              fontSize: 14,
+              color: Colors.white,
               fontFamily: 'Manrope',
             ),
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 12),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Expanded(
                 child: Container(
+                  height: 32,
+
                   margin: const EdgeInsets.symmetric(horizontal: 100),
+                  // padding: const EdgeInsets.symmetric(vertical: 8),
                   decoration: BoxDecoration(
-                    color: Colors.deepPurpleAccent,
+                    color: const Color.fromARGB(255, 26, 19, 43),
                     borderRadius: BorderRadius.circular(32),
                   ),
                   child: TabBar(
@@ -82,10 +85,10 @@ class _PaywallScreenState extends State<PaywallScreen>
                     dividerColor: Colors.transparent,
                     labelColor: Theme.of(context).primaryColor,
                     unselectedLabelColor: Colors.grey,
-                    splashBorderRadius: BorderRadius.circular(20),
+                    splashBorderRadius: BorderRadius.circular(24),
                     indicatorSize: TabBarIndicatorSize.tab,
                     indicator: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(24),
                       color: Colors.white,
                     ),
 
@@ -93,7 +96,15 @@ class _PaywallScreenState extends State<PaywallScreen>
                       final key = tabItem.elementAt(index);
                       return Tab(
                         child: Row(
-                          children: [Text(key, style: TextStyle(fontSize: 12))],
+                          children: [
+                            Text(
+                              key,
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontFamily: 'Manrope',
+                              ),
+                            ),
+                          ],
                         ),
                       );
                     }),

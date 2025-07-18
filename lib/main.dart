@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:paywell/src/screens/paywell_screen.dart';
+import 'package:paywell/screens/paywell_screen.dart';
 
 void main() {
   runApp(const MyApp());
