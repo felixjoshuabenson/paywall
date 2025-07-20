@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:paywell/theme.dart';
 import 'package:paywell/widgets/build_timeline_item.dart';
 import 'package:paywell/widgets/pay_button.dart';
@@ -36,12 +35,12 @@ class PlanTab extends StatelessWidget {
               isLast: index == timelineItems.length - 1,
             );
           }),
-          SizedBox(height: 40.h),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.05),
           RestoreButton(
             onPressed: onRestorePressed,
             buttonText: 'Restore purchase',
           ),
-          SizedBox(height: 16.h),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.02),
           PayButton(onPressed: onPayPressed, buttonText: payButtonText),
         ],
       ),

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+class AppConstants {
+  static const String fontFamily = 'Manrope';
+}
+
 //app theme colors and text styles
 class AppColors {
   static const Color background = Color(0xFF0A0E23); // Dark Navy
@@ -21,48 +25,48 @@ class AppTextStyles {
   static TextStyle title = TextStyle(
     fontSize: 24.sp,
     fontWeight: FontWeight.w700,
-    fontFamily: 'Manrope',
+    fontFamily: AppConstants.fontFamily,
     color: AppColors.whiteColor,
   );
 
   static TextStyle subtitle = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeight.w400,
-    fontFamily: 'Manrope',
+    fontFamily: AppConstants.fontFamily,
     color: AppColors.subtitleText,
   );
 
   static TextStyle tabLabel = TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeight.w600,
-    fontFamily: 'Manrope',
+    fontFamily: AppConstants.fontFamily,
   );
 
   static TextStyle timelineTitle = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeight.w700,
-    fontFamily: 'Manrope',
+    fontFamily: AppConstants.fontFamily,
     color: AppColors.whiteColor,
   );
 
   static TextStyle timelineDescription = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.w400,
-    fontFamily: 'Manrope',
+    fontFamily: AppConstants.fontFamily,
     color: AppColors.subtitleText,
   );
 
   static TextStyle button = TextStyle(
     fontSize: 18.sp,
     fontWeight: FontWeight.bold,
-    fontFamily: 'Manrope',
+    fontFamily: AppConstants.fontFamily,
     color: Colors.white,
   );
 
   static TextStyle restoreText = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.w400,
-    fontFamily: 'Manrope',
+    fontFamily: AppConstants.fontFamily,
     color: AppColors.subtitleText,
   );
 }
@@ -70,11 +74,17 @@ class AppTextStyles {
 class AppSpacing {
   static EdgeInsets responsivePadding(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    return EdgeInsets.all(width * 0.05);
+    return EdgeInsets.symmetric(
+      horizontal: width * 0.025,
+      vertical: width * 0.05,
+    );
   }
 
   static EdgeInsets resPadding(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    return EdgeInsets.all(width * 0.025);
+    return EdgeInsets.symmetric(
+      horizontal: width * 0.05,
+      vertical: width * 0.025,
+    );
   }
 }

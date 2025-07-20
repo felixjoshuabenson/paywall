@@ -14,27 +14,30 @@ class PaywallScreen extends StatefulWidget {
 class _PaywallScreenState extends State<PaywallScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-
-  List tabItem = ['Annual', 'Monthly'];
-
-  String _subtitle = 'First 14 days free, then \$69.99 (\$5.83/month)';
+  late String _currentSubtitle;
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
-    _tabController.addListener(() {
-      if (_tabController.indexIsChanging) return;
+    _currentSubtitle = Subvalues.getSubtitle(
+      0,
+    ); // Initialize with first tab's subtitle
+
+    _tabController.addListener(_handleTabChange);
+  }
+
+  void _handleTabChange() {
+    if (!_tabController.indexIsChanging) {
       setState(() {
-        _subtitle = _tabController.index == 0
-            ? 'First 14 days free, then \$69.99 (\$5.83/month)'
-            : 'First 7 days free, then \$12.99 / month';
+        _currentSubtitle = Subvalues.getSubtitle(_tabController.index);
       });
-    });
+    }
   }
 
   @override
   void dispose() {
+    _tabController.removeListener(_handleTabChange);
     _tabController.dispose();
     super.dispose();
   }
@@ -57,12 +60,13 @@ class _PaywallScreenState extends State<PaywallScreen>
             style: AppTextStyles.title.copyWith(color: AppColors.whiteColor),
           ),
           Text(
-            _subtitle,
+            _currentSubtitle,
+            softWrap: true,
             style: AppTextStyles.subtitle.copyWith(
               color: AppColors.subtitleText,
             ),
           ),
-          SizedBox(height: MediaQuery.of(context).size.height * 0.012),
+          SizedBox(height: MediaQuery.of(context).size.height * 0.02),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -76,7 +80,7 @@ class _PaywallScreenState extends State<PaywallScreen>
 
                   decoration: BoxDecoration(
                     color: AppColors.tabBackground,
-                    borderRadius: BorderRadius.circular(32),
+                    borderRadius: BorderRadius.circular(32.r),
                   ),
                   child: TabBar(
                     controller: _tabController,
@@ -84,16 +88,19 @@ class _PaywallScreenState extends State<PaywallScreen>
                     unselectedLabelColor: AppColors.tabUnselected,
                     splashBorderRadius: BorderRadius.circular(24.r),
                     indicatorSize: TabBarIndicatorSize.tab,
+
                     indicator: BoxDecoration(
                       borderRadius: BorderRadius.circular(24.r),
                       color: AppColors.whiteColor,
                     ),
 
-                    tabs: List.generate(tabItem.length, (index) {
-                      final key = tabItem.elementAt(index);
+                    tabs: List.generate(Subvalues.tabItems.length, (index) {
+                      final key = Subvalues.tabItems.elementAt(index);
                       return Tab(
-                        child: Row(
-                          children: [Text(key, style: AppTextStyles.tabLabel)],
+                        child: Text(
+                          key,
+                          textAlign: TextAlign.center, //this did not work
+                          style: AppTextStyles.tabLabel,
                         ),
                       );
                     }),
