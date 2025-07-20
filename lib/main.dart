@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:paywell/screens/paywell_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:paywell/screens/paywall_screen.dart';
+import 'package:paywell/theme.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  FlutterError.onError = (FlutterErrorDetails details) {
+    FlutterError.presentError(details);
+  };
   runApp(const MyApp());
 }
 
@@ -10,14 +16,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Fynedoc',
-      theme: ThemeData(
-        scaffoldBackgroundColor: const Color(0xFF0A0E23),
-        fontFamily: 'Manrope',
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) => MaterialApp(
+        title: 'Paywall',
+        theme: ThemeData(scaffoldBackgroundColor: AppColors.background),
+        home: child,
+        debugShowCheckedModeBanner: false,
       ),
-      home: const PaywallScreen(),
-      debugShowCheckedModeBanner: false,
+      child: const PaywallScreen(),
     );
   }
 }

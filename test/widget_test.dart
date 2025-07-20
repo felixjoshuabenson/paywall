@@ -7,13 +7,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import '../lib/screens/monthly_plan_tab.dart';
+import 'package:paywell/screens/paywall_screen.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MonthlyPlanTab());
+    await tester.pumpWidget(const PaywallScreen());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
